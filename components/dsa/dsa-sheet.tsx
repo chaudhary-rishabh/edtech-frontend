@@ -114,7 +114,7 @@ export default function DSASheet() {
             <HeaderSummary totals={totals} />
 
             <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
-                <Tabs value={tab} onValueChange={(v: "all" | "revision") => setTab(v)}>
+                <Tabs value={tab} onValueChange={(v) => setTab(v as "all" | "revision")}>
                     <TabsList>
                         <TabsTrigger value="all">All Problems</TabsTrigger>
                         <TabsTrigger value="revision">Revision</TabsTrigger>
