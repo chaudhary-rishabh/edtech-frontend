@@ -36,38 +36,6 @@ const laptopVariants: Variants = {
 export default function HeroSection() {
   return (
     <section className="relative bg-grid-lines min-h-screen flex flex-col items-center justify-center px-4 md:px-6 overflow-hidden pt-24 md:pt-0">
-      {/* Floating Tech Icons */}
-      <div
-        className="absolute inset-0 opacity-30 pointer-events-none rounded-3xl"
-        style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='2.5' numOctaves='8' stitchTiles='stitch' seed='7'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
-          mixBlendMode: "color-burn",
-          borderRadius: "inherit",
-        }}
-      />
-
-      {/* Finer secondary texture (adds subtle crispness) */}
-      <div
-        className="absolute inset-0 opacity-25 pointer-events-none rounded-3xl"
-        style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='fineNoise'%3E%3CfeTurbulence type='turbulence' baseFrequency='3.5' numOctaves='6' stitchTiles='stitch' seed='11'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.85 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23fineNoise)'/%3E%3C/svg%3E")`,
-          mixBlendMode: "overlay",
-          borderRadius: "inherit",
-        }}
-      />
-
-      {/* Shimmer highlight with more intensity */}
-      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-10 animate-shimmer pointer-events-none rounded-3xl" />
-
-      {/* Moving shimmer with richer angle and bounce */}
-      <div
-        className="absolute inset-0 opacity-10 pointer-events-none rounded-3xl"
-        style={{
-          background: "linear-gradient(120deg, transparent 35%, rgba(255,255,255,0.9) 50%, transparent 65%)",
-          animation: "shimmer 5s ease-in-out infinite alternate",
-          borderRadius: "inherit",
-        }}
-      />
       <div className="absolute inset-0 pointer-events-none">
         {/* Top Left Icons */}
         <div className="absolute top-[30%] md:top-[20%] left-4 md:left-20 animate-float-delayed">
