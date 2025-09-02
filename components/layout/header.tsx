@@ -56,7 +56,7 @@ export default function Header() {
                   </Link>
                   <nav className="hidden lg:flex items-center space-x-6">
                     <div className="flex items-center space-x-1 text-gray-700 hover:text-gray-900 cursor-pointer transition-colors">
-                      <span>DSA Sheet</span>
+                      <Link href="/dsasheet">DSA Sheet</Link>
                     </div>
                   </nav>
                 </nav>
@@ -118,7 +118,7 @@ export default function Header() {
                     Enroll Now
                   </Link>
                   <div className="flex items-center justify-between text-gray-700 hover:text-gray-900 cursor-pointer transition-colors py-2 px-3 rounded-lg hover:bg-gray-50 hover:shadow-sm hover:shadow-blue-200/20">
-                    <span>DSA Sheet</span>
+                    <Link href="/dsasheet">DSA Sheet</Link>
                   </div>
 
                   {/* Mobile Auth Button */}
