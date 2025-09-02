@@ -40,13 +40,11 @@ export default function RootLayout({
       </head>
       <body className={inter.className}>
           <NextAuthProvider>
-            <div className="flex h-screen w-full bg-white dark:bg-[#212121]">
-              <main className="flex-1 flex flex-col overflow-hidden">
+              <main className="">
                 <Header/>
                 {children}
                 <Footer/>
               </main>
-            </div>
           </NextAuthProvider>
         </body>
     </html>
