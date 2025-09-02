@@ -6,7 +6,7 @@ import { Inter } from "next/font/google"
 import "./globals.css"
 import Header from "@/components/layout/header"
 import Footer from "@/components/layout/footer"
-import NextAuthSessionProvider from "@/components/SessionProvider"
+import NextAuthProvider from "@/providers/session-provider"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -39,13 +39,15 @@ export default function RootLayout({
         />
       </head>
       <body className={inter.className}>
-        <NextAuthSessionProvider>
-          <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
-            <Header />
-            {children}
-            <Footer />
-          </div>
-        </NextAuthSessionProvider>
+          <NextAuthProvider>
+            <div className="flex h-screen w-full bg-white dark:bg-[#212121]">
+              <main className="flex-1 flex flex-col overflow-hidden">
+                <Header/>
+                {children}
+                <Footer/>
+              </main>
+            </div>
+          </NextAuthProvider>
         </body>
     </html>
   )

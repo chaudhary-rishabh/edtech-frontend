@@ -19,7 +19,7 @@ export default function Header() {
   const handleLoginClick = () => {
     setModalType('login')
     setIsModalOpen(true)
-    setIsMobileMenuOpen(false) // Close mobile menu if open
+    setIsMobileMenuOpen(false)
   }
 
   const handleCloseModal = () => {

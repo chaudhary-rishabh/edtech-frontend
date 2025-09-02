@@ -1,41 +1,52 @@
-import axios from 'axios';
-import { getSession } from 'next-auth/react';
+import { getSession } from "next-auth/react"
+import axios, { AxiosInstance, AxiosResponse } from "axios"
 
-const baseURL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
+const API_URL = `${process.env.NEXT_PUBLIC_API_BASE_URL}/api`
 
-// Create axios instance
-const api = axios.create({
-    baseURL,
+const api: AxiosInstance = axios.create({
+    baseURL: API_URL,
     timeout: 10000,
     headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
     },
-});
+    withCredentials: true,
+})
 
-// Request interceptor to add auth token
+// Request Interceptor
 api.interceptors.request.use(
     async (config) => {
-        const session = await getSession();
+        const session = await getSession()
         if (session?.accessToken) {
-            config.headers.Authorization = `Bearer ${session.accessToken}`;
+            config.headers.Authorization = `Bearer ${session.accessToken}`
         }
-        return config;
+        return config
     },
-    (error) => {
-        return Promise.reject(error);
-    }
-);
+    (error) => Promise.reject(error)
+)
 
-// Response interceptor for error handling
+// Response Interceptor
 api.interceptors.response.use(
-    (response) => response,
-    (error) => {
-        if (error.response?.status === 401) {
-            // Handle unauthorized access
-            window.location.href = '/auth/signin';
-        }
-        return Promise.reject(error);
-    }
-);
+    (response: AxiosResponse) => response,
+    async (error) => {
+        const originalRequest = error.config
 
-export default api;
+        if (error.response?.status === 401 && !originalRequest._retry) {
+            originalRequest._retry = true
+
+            // Let NextAuth handle token refresh
+            const session = await getSession()
+            if (session?.accessToken) {
+                originalRequest.headers.Authorization = `Bearer ${session.accessToken}`
+                return api(originalRequest)
+            } else {
+                if (typeof window !== "undefined") {
+                    window.location.href = "/auth/login"
+                }
+            }
+        }
+
+        return Promise.reject(error)
+    }
+)
+
+export default api
